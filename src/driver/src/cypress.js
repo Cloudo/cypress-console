@@ -237,7 +237,6 @@ class $Cypress {
   }
 
   action(eventName, ...args) {
-    console.log(eventName, ...args)
     // normalizes all the various ways
     // other objects communicate intent
     // and 'action' to Cypress
@@ -428,6 +427,9 @@ class $Cypress {
         return this.emit('log:added', ...args)
 
       case 'command:log:changed':
+        const event = args[0]
+        console.log(`[${event.chainerId}]`, event.name, event.state, event)
+
         // this.runner.addLog(args[0], this.config('isInteractive'))
 
         return this.emit('log:changed', ...args)

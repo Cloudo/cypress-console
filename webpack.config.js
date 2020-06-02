@@ -1,14 +1,27 @@
 const path = require('path')
 
+let output = {
+  filename: 'cypress-console.js',
+  library: 'CypressConsole',
+}
+const libTarget = process.env.LIB_TARGET
+if (libTarget === 'UMD') {
+  Object.assign(output, {
+    path: path.resolve(__dirname, 'umd'),
+    libraryTarget: 'umd',
+    umdNamedDefine: true,
+    globalObject: `(typeof self !== 'undefined' ? self : this)`,
+  })
+} else if (libTarget === 'COMMONJS') {
+  Object.assign(output, {
+    path: path.resolve(__dirname, 'lib'),
+    libraryTarget: 'commonjs2',
+  })
+}
+
 module.exports = {
   entry: './src/index.js',
-  output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: 'cypress-console.js',
-    libraryTarget: 'umd',
-    globalObject: 'this',
-    library: 'cypressConsole',
-  },
+  output,
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx'],
   },

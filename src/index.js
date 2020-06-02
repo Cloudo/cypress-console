@@ -21,6 +21,8 @@ export const cy = () => {
 
   Cypress.cy.setRunnable(runnable, 'hookName')
 
+  window.Cypress = Cypress
+
   return Cypress.cy
 }
 

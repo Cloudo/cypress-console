@@ -19,8 +19,8 @@
     "build:umd": "cross-env LIB_TARGET=UMD webpack -p",
     "build:commonjs": "cross-env LIB_TARGET=COMMONJS webpack -p",
     "prettier": "prettier -c src/**/*.{tsx,ts}",
-    "example:prepare": "cp -r example/kitchensink/ ./dist/",
-    "example:serve": "serve dist/",
+    "example:prepare": "cp -r example/kitchensink/ ./umd/",
+    "example:serve": "serve umd/",
     "serve:example": "npm-run-all --parallel example:prepare watch:umd example:serve",
     "prepublish": "npm run build"
   },
